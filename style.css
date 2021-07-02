@@ -1,0 +1,396 @@
+html{
+    font-family: 'roboto', sans-serif;
+    font-size: 14px;
+}
+body{
+    padding: 0;
+    margin: 0;
+}
+*{
+    box-sizing: border-box;
+}
+header{
+    border-bottom: 1px solid #d9d9d9;
+    padding: 2rem 0;
+    position: relative;
+}
+h1, h2{
+    text-align: center;
+    font-weight: lighter;
+}
+h1{
+    font-size: 70px;
+}
+h2{
+    font-size: 30px;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+input, select{
+    border: 1px solid #e5e5e5;
+    padding: 1rem;
+}
+input::placeholder, select{
+    color: #e5e5e5;
+}
+input[type="text"], textarea{
+    max-width: 520px;
+    width: 100%;
+    min-width: 0;
+    font-size: 1rem;
+    font-family: 'roboto', sans-serif;
+}
+input[type="text"], textarea, select{
+    border-radius: 5px;
+    font-size: 24px;
+    transition: .3s;
+}
+input[type="text"]{
+    height: 60px;
+}
+input:focus, textarea:focus, select:focus{
+    border: 1px solid #435993;
+    outline: none;
+}
+.input{
+    position: relative;
+}
+.input .placeholder{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    color: #c8c8c8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    font-size: 24px;
+    transition: .3s;
+    padding: .5rem;
+}
+.input.min .placeholder{
+    font-size: 14px;
+    height: 2rem;
+}
+.input.min input{
+    font-size: 20px;
+    padding: 1rem .5rem .5rem;
+}
+button{
+    background: #435993;
+    color: white;
+    border: none;
+    padding: 1em 2em;
+    border-radius: 10px;
+}
+.container{
+    width: 90%;
+    max-width: 768px;
+    margin: 0 auto;
+}
+.container-min{
+    width: 90%;
+    max-width: 520px;
+    margin: 0 auto;
+}
+#mobile-menu{
+    display: none;
+    justify-content: center;
+}
+#mobile-menu .burger{
+    height: 50px;
+    width: 50px;
+    overflow: hidden;
+    position: relative;
+}
+#mobile-menu .burger .line{
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: #435993;
+    left: 0;
+    transition: .3s;
+    transform-origin: left;
+}
+#mobile-menu .burger-menu{
+    position: absolute;
+    top: -100%;
+    width: 100%;
+    left: 0;
+    transition: .3s;
+}
+#mobile-menu .burger-menu.active{
+    top: 100%;
+}
+#mobile-menu .burger .line:nth-child(1){
+    top: 0;
+}
+#mobile-menu .burger .line:nth-child(2){
+    top: 50%;
+}
+#mobile-menu .burger .line:nth-child(3){
+    bottom: 0;
+}
+#mobile-menu .burger.close .line:nth-child(2){
+    left: -100%;
+}
+#mobile-menu .burger.close .line:nth-child(1){
+    transform: rotate(45deg);
+    width: 170%;
+}
+#mobile-menu .burger.close .line:nth-child(3){
+    transform: rotate(-45deg);
+    width: 170%;
+}
+#mobile-menu .container{
+    max-width: 768px;
+    width: 100%;
+    margin: 0 auto;
+}
+#mobile-menu ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+}
+.section{
+    margin: 70px 0;
+}
+#desctop-menu{
+    padding: 0;
+    list-style: none;
+    -ms-display: flex;
+    display: flex;
+    justify-content: center;
+}
+#desctop-menu li{
+    margin-right: 75px;
+}
+#desctop-menu a{
+    color: #435993;
+}
+#desctop-menu li:last-child{
+    margin-right: 0;
+}
+.section-img{
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    margin: 0 auto;
+    display: block;
+}
+
+#personal-info .input-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#personal-info .input-wrapper>*{
+    margin-bottom: 2rem;
+    width: 100%;
+}
+#personal-info .input-wrapper>*:last-child{
+    margin-bottom: 0;
+}
+#personal-info .select>input::placeholder{
+    color: #c8c8c8;
+}
+#personal-info .select{
+    width: 100%;
+    max-width: 320px;
+    position: relative;
+}
+#personal-info .options{
+    display: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    color: #435993;
+    box-shadow: 0 3px 8px rgba(0,0,0,.2);
+    font-size: 20px;
+    overflow-y: scroll;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    background: white;
+    z-index: 2;
+}
+#personal-info .options>*{
+    cursor: pointer;
+    margin: 1em 0;
+}
+#personal-info .options.active{
+    display: block;
+    height: 300px;
+}
+
+#experience .chkbx-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+}
+#experience .chkbx-wrapper>*{
+    width: 33.333%;
+    min-width: 150px;
+    display: flex;
+    align-items: center;
+}
+#experience .chkbx-wrapper label{
+    width: 20px;
+    height: 20px;
+    margin-right: 1rem;
+    border-radius: 2px;
+    display:block;
+    border: 1px solid #435993;
+}
+#experience .chkbx-wrapper>*:hover label{
+    background: #e9efff;
+}
+#experience .chkbx-wrapper input{
+    -webkit-appearance: none;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    display: block;
+    padding: 0;
+    border: none;
+}
+#experience .chkbx-wrapper input:checked{
+    background: url("img/Shape 6.png") center/contain no-repeat #435993;
+}
+
+#js .gradient{
+    fill: url(#Gradient2);
+    clip-path: url(#myClip);
+}
+#js .gray{
+    fill: #E8E8E8;
+}
+#js .pointer{
+    background: url("img/pointer.png") center/contain no-repeat;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 100%;
+    cursor: pointer;
+    transform: translateX(-50%);
+}
+#js input[type="range"]{
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+.range{
+    position: relative;
+    touch-action: none;
+}
+.range svg{
+    pointer-events: none;
+    z-index: 2;
+}
+.range input[type="range"]{
+    width: 100%;
+    max-width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-appearance: none;
+	overflow: visible;
+}
+.marker-wrapper .marker{
+    width: 150px;
+    font-weight: lighter;
+    position: relative;
+    margin: 0;
+    display: flex;
+    align-items: flex-end;
+    counter-increment: num;
+}
+#js .range-lvl{
+    display: none;
+    padding: 0;
+    margin: 0;
+}
+#js .range-lvl>*::marker{
+    
+}
+/*.marker:after{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    height: 25px;
+    width: 1px;
+    border-left: 2px dashed #e5e5e5;
+}
+.marker:nth-child(1):after{
+    left: 0;
+}
+.marker:last-child:after{
+    right: 0;
+    left: auto;
+}*/
+.marker-line-wrapper, .marker-txt{
+    display: flex;
+    justify-content: space-between;
+    counter-reset: num;
+
+}
+.marker-line{
+    height: 25px;
+    width: 1px;
+    border-left: 2px dashed #e5e5e5;
+}
+/*Без webit-appearence т.к. в эксплоере он не поддерживается*/
+
+#about{
+    text-align: center;
+    max-width: 520px;
+    margin: 70px auto;
+}
+#about textarea{
+    height: 180px;
+    border: 1px solid #e5e5e5;
+    border-radius: 2px;
+    resize: none;
+    display: block;
+    margin: 0 auto;
+    padding: 1rem;
+    border-radius: 5px;
+}
+#about button{
+    display: block;
+    margin: 70px auto 0;
+}
+@media(max-width:768px){
+    #desctop-menu{
+        display: none;
+    }
+    #mobile-menu{
+        display: flex;
+    }
+    .range-wrapper{
+        padding: 1rem;
+    }
+    #js .range-lvl{
+        display: block;
+    
+    }
+    .marker-wrapper .marker{
+        color: black;
+        font-weight: normal;
+        width: auto;
+    }
+    .marker-wrapper .marker:before{
+        content: counter(num);
+    }
+    .marker-wrapper .marker .txt{
+        display: none;
+    }
+}
