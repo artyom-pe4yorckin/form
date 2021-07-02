@@ -49,8 +49,7 @@ function ready() {
         let translate = currentPoint*(pointStep/100)*rangeWidth;
         pointer.style.transform = "translatex("+(translate-15)+"px)";
         svgRange.setAttribute("width", rangeWidth);
-        clipPath.setAttribute("width", (translate))
-        console.log(translate)
+        //clipPath.setAttribute("width", (translate))
     })
 
     //мобильное меню
