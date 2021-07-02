@@ -41,16 +41,23 @@ function ready() {
             this.removeEventListener("mouseup", up);
         }
     }
-    clipPath.setAttribute("width", (range.getBoundingClientRect().width))
-    pointer.style.transform = "translatex("+(range.getBoundingClientRect().width-15)+"px)";
+    
 
-    window.addEventListener("resize", function(){
+    function setRangeParam(){
+        let viewBox = svgRange.getAttribute("viewBox").split(" ").map(function(v){
+            return +v
+        });
         let rangeWidth = range.getBoundingClientRect().width;
         let translate = currentPoint*(pointStep/100)*rangeWidth;
+        viewBox[2] = rangeWidth;
         pointer.style.transform = "translatex("+(translate-15)+"px)";
-        svgRange.setAttribute("width", rangeWidth);
-        //clipPath.setAttribute("width", (translate))
-    })
+        svgRange.setAttribute("viewBox", viewBox.join(" "));
+        clipPath.setAttribute("width", (currentPoint*(pointStep/100)*rangeWidth))
+        pointer.style.transform = "translatex("+(rangeWidth-15)+"px)";
+    }
+    setRangeParam();
+
+    window.addEventListener("resize", setRangeParam)
 
     //мобильное меню
     let burger = document.querySelector("#mobile-menu .burger");
