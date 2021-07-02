@@ -44,7 +44,7 @@ function ready() {
     clipPath.setAttribute("width", (range.getBoundingClientRect().width))
     pointer.style.transform = "translatex("+(range.getBoundingClientRect().width-15)+"px)";
 
-    window.addEventListener("resize", ()=>{
+    window.addEventListener("resize", function(){
         let rangeWidth = range.getBoundingClientRect().width;
         let translate = currentPoint*(pointStep/100)*rangeWidth;
         pointer.style.transform = "translatex("+(translate-15)+"px)";
@@ -55,18 +55,18 @@ function ready() {
     //мобильное меню
     let burger = document.querySelector("#mobile-menu .burger");
     let burgerMenu = document.querySelector("#mobile-menu .burger-menu");
-    burger.onclick = ()=>{
+    burger.onclick = function(){
         burgerMenu.classList.toggle("active");
         burger.classList.toggle("close");
     }
 
     //Селект
     let selects = document.querySelectorAll(".select");
-    for(let s of selects){
-        s.addEventListener("click", showOptions);
-        let options = s.querySelectorAll(".options>*");
-        for(let o of options){
-            o.addEventListener("click", changeVal);
+    for(let s=0;s<selects.length;s++){
+        selects[s].addEventListener("click", showOptions);
+        let options = selects[s].querySelectorAll(".options>*");
+        for(let p=0;p<options.length;p++){
+            options[p].addEventListener("click", changeVal);
         }
     }
     function showOptions(){
@@ -79,11 +79,11 @@ function ready() {
     //плейсхолдеры
     let inputWrapper = document.querySelectorAll(".input");
     let inputs = document.querySelectorAll(".input input");
-    for(let i of inputWrapper){
-        i.addEventListener("click", minimizePlaceholder);
+    for(let i=0;i<inputWrapper.length;i++){
+        inputWrapper[i].addEventListener("click", minimizePlaceholder);
     }
-    for(let i of inputs){
-        i.addEventListener("blur", checkVal);
+    for(let i=0;i<inputs.length;i++){
+        inputs[i].addEventListener("blur", checkVal);
     }
     function minimizePlaceholder(){
         this.classList.add("min");
