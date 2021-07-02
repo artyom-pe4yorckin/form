@@ -293,6 +293,7 @@ button{
 .range svg{
     pointer-events: none;
     z-index: 2;
+    width: 100%;
 }
 .range input[type="range"]{
     width: 100%;
@@ -316,9 +317,6 @@ button{
     display: none;
     padding: 0;
     margin: 0;
-}
-#js .range-lvl>*::marker{
-    
 }
 /*.marker:after{
     content: "";
