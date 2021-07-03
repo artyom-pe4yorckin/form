@@ -13,6 +13,7 @@ header{
     border-bottom: 1px solid #d9d9d9;
     padding: 2rem 0;
     position: relative;
+    background: white;
 }
 h1, h2{
     text-align: center;
@@ -42,10 +43,13 @@ input[type="text"], textarea{
     font-size: 1rem;
     font-family: 'roboto', sans-serif;
 }
-input[type="text"], textarea, select{
+input[type="text"], select{
     border-radius: 5px;
     font-size: 24px;
     transition: .3s;
+}
+textarea{
+    font-size: 20px;
 }
 input[type="text"]{
     height: 60px;
@@ -98,15 +102,30 @@ button{
     max-width: 520px;
     margin: 0 auto;
 }
+.menu-item{
+    color: #435993;
+}
+.menu-item.active{
+    color: black;
+}
 #mobile-menu{
     display: none;
     justify-content: center;
+}
+#mobile-menu .menu{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
+    background: white;
+    z-index: 2;
 }
 #mobile-menu .burger{
     height: 50px;
     width: 50px;
     overflow: hidden;
     position: relative;
+    z-index: 2;
 }
 #mobile-menu .burger .line{
     position: absolute;
@@ -123,9 +142,16 @@ button{
     width: 100%;
     left: 0;
     transition: .3s;
+    background: white;
+    padding: 2rem;
+    border-bottom: 1px solid #d9d9d9;
+}
+#mobile-menu .menu-item{
+    font-size: 1.5rem;
+    padding: .5rem;
 }
 #mobile-menu .burger-menu.active{
-    top: 100%;
+    top: calc(100% + 1px);
 }
 #mobile-menu .burger .line:nth-child(1){
     top: 0;
@@ -171,9 +197,6 @@ button{
 #desctop-menu li{
     margin-right: 75px;
 }
-#desctop-menu a{
-    color: #435993;
-}
 #desctop-menu li:last-child{
     margin-right: 0;
 }
@@ -205,6 +228,41 @@ button{
     max-width: 320px;
     position: relative;
 }
+#personal-info .select input{
+    background: white;
+    padding-right: 3rem;
+}
+#personal-info .select .arrow{
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1rem;
+    height: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    background: url("img/arrow.png") center/contain no-repeat;
+}
+#personal-info .select.active .arrow{
+    transform: translateY(-50%) rotate(180deg);
+}
+/*#personal-info .select .arrow:before, #personal-info .select .arrow:after{
+    content: "";
+    width: 170%;
+    height: 1px;
+    background: #435993;
+    display: block;
+}
+#personal-info .select .arrow:before{
+    transform: rotate(45deg);
+    transform-origin: left;
+}
+#personal-info .select .arrow:after{
+    transform: rotate(-45deg);
+    transform-origin: left;
+}*/
 #personal-info .options{
     display: none;
     margin: 0;
@@ -226,7 +284,7 @@ button{
     cursor: pointer;
     margin: 1em 0;
 }
-#personal-info .options.active{
+#personal-info .select.active .options{
     display: block;
     height: 300px;
 }
@@ -294,6 +352,7 @@ button{
     pointer-events: none;
     z-index: 2;
     width: 100%;
+    overflow-x: hidden;
 }
 .range input[type="range"]{
     width: 100%;
@@ -318,22 +377,6 @@ button{
     padding: 0;
     margin: 0;
 }
-/*.marker:after{
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    height: 25px;
-    width: 1px;
-    border-left: 2px dashed #e5e5e5;
-}
-.marker:nth-child(1):after{
-    left: 0;
-}
-.marker:last-child:after{
-    right: 0;
-    left: auto;
-}*/
 .marker-line-wrapper, .marker-txt{
     display: flex;
     justify-content: space-between;
@@ -367,6 +410,9 @@ button{
     margin: 70px auto 0;
 }
 @media(max-width:768px){
+    header{
+        padding: 0;
+    }
     #desctop-menu{
         display: none;
     }
