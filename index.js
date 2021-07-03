@@ -1,5 +1,24 @@
 window.addEventListener("load", ready);
 function ready() {
+    //якоря
+    if(window.location.hash!=""){
+        let items = document.querySelectorAll(".menu-item a[href='"+window.location.hash+"']");
+        for(let i=0; i<items.length; i++){
+            items[i].closest(".menu-item").classList.add("active");
+        }
+    }
+    let menuitems = document.querySelectorAll(".menu-item");
+    for(let m=0; m<menuitems.length; m++){
+        menuitems[m].addEventListener("click", checkAncor);
+    }
+    function checkAncor(){
+        let activeitems = this.closest("header").querySelectorAll(".menu-item.active");
+        for(let i=0; i<activeitems.length; i++){
+            activeitems[i].classList.remove("active");
+        }
+        this.classList.add("active");
+    }
+
     //range
     let svgRange = document.querySelector("#js .range svg");
     let range = document.querySelector("#js .range");
@@ -8,11 +27,11 @@ function ready() {
     let pointStep = 100/(cntOfPoint-1);
     let clipPath = document.querySelector("#myClip rect");
     let currentPoint = 3;//[0;3]
-    range.addEventListener("mousedown", down);
+    range.addEventListener("pointerdown", down);
     function down(e) {
         e.preventDefault();
-        this.addEventListener("mousemove", move);
-        this.addEventListener("mouseup", up);
+        this.addEventListener("pointermove", move);
+        this.addEventListener("pointerup", up);
         let start = e.clientX;
         let translate = start - this.getBoundingClientRect().left;
         let rangeWidth = this.getBoundingClientRect().width;
@@ -24,21 +43,13 @@ function ready() {
             clipPath.setAttribute("width", (translate+30))
         }
         function up(e) {
-            /*
-            разделить диапазон на 4 части [0;3]
-            перевести их в %
-            получить позицию отпускания мыши
-            перевести её в %
-            получить ближайшую точку
-            примагнитить к ближайшей точке
-            */
             let end = ((e.clientX - this.getBoundingClientRect().left)/rangeWidth)*100;//% от края [0;100]
             currentPoint = Math.round(end/pointStep);
             let translate = currentPoint*(pointStep/100)*rangeWidth;//точка к котрой магнититься * шаг в % * ширина
             pointer.style.transform = "translatex("+(translate-15)+"px)";
             clipPath.setAttribute("width", (translate))
-            this.removeEventListener("mousemove", move);
-            this.removeEventListener("mouseup", up);
+            this.removeEventListener("pointermove", move);
+            this.removeEventListener("pointerup", up);
         }
     }
     
@@ -47,13 +58,12 @@ function ready() {
         let viewBox = svgRange.getAttribute("viewBox").split(" ").map(function(v){
             return +v
         });
-        let rangeWidth = range.getBoundingClientRect().width;
+        let rangeWidth = svgRange.getBoundingClientRect().width;
         let translate = currentPoint*(pointStep/100)*rangeWidth;
-        viewBox[2] = rangeWidth;
+        viewBox[2] = svgRange.getBoundingClientRect().width;
         pointer.style.transform = "translatex("+(translate-15)+"px)";
         svgRange.setAttribute("viewBox", viewBox.join(" "));
-        clipPath.setAttribute("width", (currentPoint*(pointStep/100)*rangeWidth))
-        pointer.style.transform = "translatex("+(rangeWidth-15)+"px)";
+        clipPath.setAttribute("width", currentPoint*(pointStep/100)*svgRange.getBoundingClientRect().width)
     }
     setRangeParam();
 
@@ -77,7 +87,7 @@ function ready() {
         }
     }
     function showOptions(){
-        this.querySelector(".options").classList.toggle("active");
+        this.classList.toggle("active");
     }
     function changeVal(){
         this.closest(".select").querySelector("input").value = this.value;
